@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var arrayOptionsSpinner: Array<String>
     private var selectedOperator = E
+    private var bit1: Boolean = false
+    private var bit2: Boolean = false
 
     companion object{
         val E = "E"
@@ -35,7 +37,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun converterOnClick() {
-        Toast.makeText(this, selectedOperator, Toast.LENGTH_SHORT).show()
+        when(selectedOperator){
+            E -> E(bit1, bit2)
+            OU -> OU(bit1, bit2)
+            XOU -> XOU(bit1, bit2)
+            NAO -> NAO(bit1, bit2)
+            NAOE -> NAOE(bit1, bit2)
+            NAOOU -> NAOOU(bit1, bit2)
+        }
     }
 
     private fun setupSpinner() {
@@ -52,5 +61,33 @@ class MainActivity : AppCompatActivity() {
                 selectedOperator = arrayOptionsSpinner.get(position)
             }
         }
+    }
+
+    private fun E(bit1: Boolean, bit2: Boolean){
+        Toast.makeText(this, "E", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun OU(bit1: Boolean, bit2: Boolean){
+        Toast.makeText(this, "OU", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun XOU(bit1: Boolean, bit2: Boolean){
+        Toast.makeText(this, "XOU", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun NAO(bit1: Boolean, bit2: Boolean){
+        Toast.makeText(this, "NAO", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun NAOE(bit1: Boolean, bit2: Boolean){
+        Toast.makeText(this, "NAOE", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun NAOOU(bit1: Boolean, bit2: Boolean){
+        Toast.makeText(this, "NAOOU", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun notifyNotImplemented() {
+        Toast.makeText(this, "Não implementado", Toast.LENGTH_SHORT).show()
     }
 }

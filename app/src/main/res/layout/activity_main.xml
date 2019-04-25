@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <EditText
+    <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/bit_1"
@@ -16,7 +16,7 @@
             app:layout_constraintEnd_toStartOf="@+id/inputBit2" android:layout_marginTop="32dp"
             app:layout_constraintTop_toTopOf="parent"/>
 
-    <EditText
+    <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/bit_2"
@@ -59,6 +59,8 @@
             android:layout_marginStart="8dp"
             android:textSize="22sp"
             android:textStyle="bold"/>
+
+
 
 
 </android.support.constraint.ConstraintLayout>

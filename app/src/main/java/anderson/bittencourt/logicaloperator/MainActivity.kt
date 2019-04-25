@@ -38,13 +38,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun converterOnClick() {
         when(selectedOperator){
-            E -> E(bit1, bit2)
-            OU -> OU(bit1, bit2)
-            XOU -> XOU(bit1, bit2)
-            NAO -> NAO(bit1, bit2)
-            NAOE -> NAOE(bit1, bit2)
-            NAOOU -> NAOOU(bit1, bit2)
+            E -> output.text = E(bit1, bit2).toString()
+            OU -> output.text = OU(bit1, bit2).toString()
+            XOU -> output.text = XOU(bit1, bit2).toString()
+            NAO -> output.text = NAO(bit1).toString()
+            NAOE -> output.text = NAOE(bit1, bit2).toString()
+            NAOOU -> output.text = NAOOU(bit1, bit2).toString()
+            else -> notifyNotImplemented()
         }
+    }
+
+    private fun enableAllInputBits() {
+        inputBit1.isEnabled = true
+        inputBit2.isEnabled = true
+    }
+
+    private fun disableInputBit2() {
+        inputBit2.isEnabled = false
     }
 
     private fun setupSpinner() {
@@ -59,35 +69,68 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedOperator = arrayOptionsSpinner.get(position)
+                cleanOutput()
+                if(selectedOperator == NAO) disableInputBit2() else enableAllInputBits()
+            }
+        }
+
+        val adapterBits = ArrayAdapter.createFromResource(this, R.array.spinnerBits, android.R.layout.simple_spinner_item)
+        adapterBits.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        inputBit1.adapter = adapterBits
+        inputBit2.adapter = adapterBits
+
+        inputBit1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                bit1 = position == 1
+            }
+        }
+
+        inputBit2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                bit2 = position == 1
             }
         }
     }
 
-    private fun E(bit1: Boolean, bit2: Boolean){
-        Toast.makeText(this, "E", Toast.LENGTH_SHORT).show()
+    private fun E(bit1: Boolean, bit2: Boolean): Int{
+        val result = bit1 && bit2
+        return if(result) 1 else 0
     }
 
-    private fun OU(bit1: Boolean, bit2: Boolean){
-        Toast.makeText(this, "OU", Toast.LENGTH_SHORT).show()
+    private fun OU(bit1: Boolean, bit2: Boolean): Int{
+        val result = bit1 || bit2
+        return if(result) 1 else 0
     }
 
-    private fun XOU(bit1: Boolean, bit2: Boolean){
-        Toast.makeText(this, "XOU", Toast.LENGTH_SHORT).show()
+    private fun XOU(bit1: Boolean, bit2: Boolean): Int{
+        val result = (!bit1 && bit2) || (bit1 && !bit2)
+        return if(result) 1 else 0
     }
 
-    private fun NAO(bit1: Boolean, bit2: Boolean){
-        Toast.makeText(this, "NAO", Toast.LENGTH_SHORT).show()
+    private fun NAO(bit1: Boolean): Int{
+        val result = !bit1
+        return if(result) 1 else 0
     }
 
-    private fun NAOE(bit1: Boolean, bit2: Boolean){
-        Toast.makeText(this, "NAOE", Toast.LENGTH_SHORT).show()
+    private fun NAOE(bit1: Boolean, bit2: Boolean): Int{
+        val result = !(bit1 && bit2)
+        return if(result) 1 else 0
     }
 
-    private fun NAOOU(bit1: Boolean, bit2: Boolean){
-        Toast.makeText(this, "NAOOU", Toast.LENGTH_SHORT).show()
+    private fun NAOOU(bit1: Boolean, bit2: Boolean): Int{
+        val result = !(bit1 || bit2)
+        return if(result) 1 else 0
     }
 
     private fun notifyNotImplemented() {
         Toast.makeText(this, "Não implementado", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun cleanOutput(){
+        output.text = ""
     }
 }

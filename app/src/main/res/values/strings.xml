@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">LogicalOperator</string>
+    <string name="bit_1">BIT 1</string>
+    <string name="bit_2">BIT 2</string>
+    <string name="converter">Converter</string>
+
+    <string-array name="spinnerOptions">
+        <item>E</item>
+        <item>OU</item>
+        <item>XOU</item>
+        <item>NAO</item>
+        <item>NAOE</item>
+        <item>NAOOU</item>
+    </string-array>
 </resources>

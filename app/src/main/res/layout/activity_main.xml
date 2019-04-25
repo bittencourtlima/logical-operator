@@ -7,13 +7,58 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <TextView
+    <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:hint="@string/bit_1"
+            android:id="@+id/inputBit1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/inputBit2" android:layout_marginTop="32dp"
             app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/bit_2"
+            android:id="@+id/inputBit2"
+            app:layout_constraintStart_toEndOf="@+id/inputBit1"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="@+id/inputBit1"/>
+
+    <Spinner
+             android:id="@+id/spinnerOperators"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginEnd="8dp"
+             android:layout_marginRight="8dp"
+             android:layout_marginLeft="8dp"
+             android:layout_marginStart="8dp"
+             android:layout_marginTop="24dp"
+             app:layout_constraintEnd_toEndOf="@+id/inputBit2"
+             app:layout_constraintStart_toStartOf="@+id/inputBit1"
+             app:layout_constraintTop_toBottomOf="@+id/inputBit1"/>
+
+    <Button
+            android:id="@+id/converter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/converter"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerOperators"
+            app:layout_constraintStart_toStartOf="@+id/inputBit1" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="@+id/inputBit2"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"/>
+
+    <TextView
+            android:id="@+id/output"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/converter" app:layout_constraintEnd_toEndOf="@+id/inputBit2"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toStartOf="@+id/inputBit1" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+
 
 </android.support.constraint.ConstraintLayout>
